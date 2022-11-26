@@ -15,6 +15,7 @@ import gulpPag from 'gulp-pug'
 
 const sass = gulpSass(dartSass)
 
+
 // Установка путей
 const paths = {
   pug: {
