@@ -75,7 +75,7 @@ export const scripts = () => {
     .pipe(babel({
       presets: ['@babel/env']
     }))
-    .pipe(minify())
+    // .pipe(minify())
     .pipe(concat('main.min.js'))
     .pipe(sourcemaps.write('.'))
     .pipe(browserSync.stream())
@@ -99,11 +99,11 @@ export const watch = () => {
     }
   })
   gulp.watch(paths.html.dest).on('change', browserSync.reload) // перезагрузка при обновление index.html
-  gulp.watch(paths.pug.src, pug)
+  gulp.watch(paths.pug.src, html)
   gulp.watch(paths.styles.src, styles)
   gulp.watch(paths.scripts.src, scripts)
   gulp.watch(paths.images.src, img)
 }
 
-export const build = gulp.series(clean, pug, gulp.parallel(styles, scripts, img), watch)
+export const build = gulp.series(clean, html, gulp.parallel(styles, scripts, img), watch)
 export default build
