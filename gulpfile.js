@@ -53,7 +53,7 @@ export const pug = () => {
 
 export const html = () => {
   return gulp.src(paths.html.src)
-    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(htmlmin({ collapseWhitespace: false }))
     .pipe(browserSync.stream())
     .pipe(gulp.dest(paths.html.dest))
 }
@@ -99,7 +99,7 @@ export const watch = () => {
     }
   })
   gulp.watch(paths.html.dest).on('change', browserSync.reload) // перезагрузка при обновление index.html
-  gulp.watch(paths.pug.src, html)
+  gulp.watch(paths.html.src, html)
   gulp.watch(paths.styles.src, styles)
   gulp.watch(paths.scripts.src, scripts)
   gulp.watch(paths.images.src, img)
