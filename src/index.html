@@ -6,21 +6,88 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/main.min.css">
-  <title>Document</title>
+  <title>Weather</title>
 </head>
 
 <body>
-  <div class="main snow evening" id="app">
-    <div class="snowflake-1"></div>
-    <div class="snowflake-2"></div>
+  <div class="main day" id="app">
+    <div class="snowflake-2 "></div>
+    <div class="snowflake-1 "></div>
     <div class="container">
-      <div class="search-block">
-        <div class="search-block__city">
-          <h1 class="search-block__city__item">CITY</h1>
+      <div class="container__search-block">
+        <div class="search-block">
+          <div class="search-block__city">
+            <h1 class="search-block__city__item" id="label-city">-</h1>
+          </div>
+          <form class="search-block__form" name="checkWeather">
+            <div class="form-block">
+              <label class="form-block__label" >Enter city name</label>
+              <input type="search" class="form-block__input" autocomplete="off" id="form-input">
+            </div>
+            <button class="form__button">Check the weather</button>
+          </form>
         </div>
-        <div class="search-block__input">
-          <input type="text">
-          <button class="search-block__button"></button>
+      </div>
+      
+      
+      <div class="weather-block">
+        <div class="weather-block__current">
+          <div class="weather-header">
+            <span class="weather-header__title ">СЕГОДНЯ</span>
+            <span class="weather-header__temp" id="current-date">-</span>
+          </div>
+          <div class="weather-main">
+            <span class="weather-main__temp" id="current-temp">-</span>
+            <img class="weather-main__img" src="./images/clouds.png" alt="">
+            <span class="weather-main__description" id="current-description">-</span>
+          </div>
+          <div class="weather-footer">
+            <div class="weather-footer__block">
+              <div class="weather-footer__stat">
+                <span class="weather-footer__title">Максимальная</span>
+                <span class="weather-footer__value" id="current-max">-</span>
+              </div>
+              <div class="weather-footer__stat">
+                <span class="weather-footer__title">Минимальная</span>
+                <span class="weather-footer__value" id="current-min">-</span>
+              </div>
+            </div>
+            <div class="weather-footer__block">
+              <div class="weather-footer__stat">
+                <span class="weather-footer__title">Ощущается как</span>
+                <span class="weather-footer__value" id="current-feelsLike">-</span>
+              </div>
+              <div class="weather-footer__stat">
+                <span class="weather-footer__title">Влажность</span>
+                <span class="weather-footer__value" id="current-humidity">-</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weather-block__next">
+          <div class="weather-block__secondary">
+            <div class="weather-header">
+              <span class="weather-header__title weather-header__title_small">ЗАВТРА</span>
+            <span class="weather-header__date weather-header__date_small" id="tomorrow-date">-</span>
+            </div>
+            <div class="weather-main weather-main-small">
+              <span class="weather-main__temp weather-main__temp-small" id="tomorrow-temp">-</span>
+              <img class="weather-main__img weather-main__img-small" src="./images/clouds.png" alt="">
+              <span class="weather-main__description weather-main__description-small" id="tomorrow-description">-</span>
+            </div>
+          </div>
+          <div class="weather-block__secondary">
+            <div class="weather-header">
+              <span class="weather-header__title weather-header__title_small">ПОСЛЕЗАВТРА</span>
+            <span class="weather-header__date weather-header__date_small" id="tomorrowAfter-date">-</span>
+            </div>
+            <div class="weather-main weather-main-small">
+              <span class="weather-main__temp weather-main__temp-small" id="tomorrowAfter-temp">-</span>
+              <img class="weather-main__img weather-main__img-small" src="./images/clouds.png" alt="">
+              <span class="weather-main__description weather-main__description-small" id="tomorrowAfter-description">-</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

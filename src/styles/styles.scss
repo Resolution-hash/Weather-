@@ -1,10 +1,11 @@
 @import './var.scss';
 @import './reset.scss';
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap');
 
 body{
-  font-family: 'Lato', sans-serif;
-  color: $fontColor;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: $color-first;
   width: 100vw;
   height: 100vh;
 }
@@ -17,8 +18,10 @@ body{
 }
 
 .container{
-  height: 100vh;
-  padding: 20px;
+  height: 100%;
+  min-height: 100vh;
+  max-width: 1536px;
+  margin: 0 auto;
 }
 
 .disable{
@@ -27,37 +30,248 @@ body{
 
 
 /*search-block"*/
+.container__search-block{
+  padding: 20px;
+}
 
 .search-block{
   display: flex;
   position: relative;
+  z-index: 10;
   
-  padding: 20px;
   width: 100%;
   height: 100px;
 
   &::after{
-    width: inherit;
-    height: inherit;
     display: block;
     content: '';
+    top: 0;
+    left: 0;
     position: absolute;
+    width: 100%;
+    height: 100%;
     background: white;
     opacity: 0.1;
     border-radius: 15px;
-    filter: blur(10px);
+    z-index: 0;
   }
 
   &__city{
     display: flex;
     align-items: center;
+    width: 30%;
+    justify-content: center;
     &__item{
       font-size: 20px;
-      padding: 10px 150px;
+      padding: 20px 0;
+      text-align: center;
+      width: 100%;
+      border-right: 2px solid $color-first;
     }
   }
+
+  &__form{
+    margin-left: 100px;
+    display: flex;
+    width: 100%;
+    column-gap: 20px;
+    align-items: center;
+    z-index: 10;
+
+  }
+}
+
+  .form-block{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+    
+    &__label{
+      font-size: 12px;
+      color: $color-first;
+    }
+  
+    &__input{
+      font-size: 16px;
+      height: 30px;
+      width: 100%;
+      display: flex;
+      background: none;
+      border: none;
+      border-bottom: 1px solid $color-first;
+    }
+  }
+
+  .form__button{
+    cursor: pointer;
+    padding: 10px 15px;
+    border: 1px solid $color-first;
+    border-radius: 5px;
+    height: fit-content;
+    background: none;
+    
+    &:hover{
+      background: $color-first;
+      color: white;
+      transition: all .1s linear;
+    }
+  }
+
+
+
+/*weather-block*/
+
+.weather-block{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  column-gap: 20px;
+  z-index: 10;
+  &__current{
+    padding: 20px 60px 40px;
+    width: 60%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__secondary{
+    padding: 20px 30px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  &__current:after,
+  &__secondary::after{
+    display: block;
+    content: '';
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0.1;
+    border-radius: 15px;
+    z-index: 0;
+  }
+  &__next{
+    flex-grow: 2;
+    row-gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.weather{
+  &-temp{
+    display: flex;
+    column-gap: 50px;
+  }
+  &-header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid $color-first;
+    padding-bottom: 5px;
+    align-items: self-end;
+    &__title{
+      font-size: 23px;
+    }
+    &__title_small{
+      font-size: 18px;
+    }
+
+    &__temp,
+    &__date{
+      font-size: 19px;
+      margin-top: 10px;
+    }
+
+    &__date_small{
+      font-size: 15px;
+    }
+  }
+
+
+  &-main{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding-bottom: 50px;
+
+    &-small{
+      padding-bottom: 10px;
+    }
+
+    &__temp{
+      font-size: 70px;
+      font-weight: 400;
+      padding: 10px 0 30px;
+
+      &-small{
+        font-size: 40px;
+      }
+    }
+
+    &__img{
+      width: 150px;
+      &-small{
+        width: 100px;
+      }
+    }
+
+    &__description{
+      font-size: 35px;
+      font-weight: 400;
+
+      &-small{
+        font-size: 20px;
+      }
+    }
+  }
+
+  &-footer{
+    display: flex;
+
+    &__block:first-child{
+      border-right: 2px solid $color-first;
+    }
+    
+    &__block{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 30px;
+      width: 50%;
+      
+    }
+
+    &__stat{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__title{
+      color: $color-second;
+      margin-bottom: 10px;
+    }
+
+    &__value{
+      font-size: 30px;
+      font-weight: 400;
+    }
+  }
+
   
 }
+
+
+
+
+
 
 /* weather animation*/
   .snowflake-1{
@@ -67,7 +281,9 @@ body{
     width: 100vw;
     height:100vh;
     animation: snow1 30s linear infinite;  
+    z-index: 0;
   }
+
 
   .snowflake-2{
     background-image: url(../images/snow2.png),url(../images/snow2.png);
@@ -75,7 +291,8 @@ body{
     width: 100vw;
     height:100vh;
     position:absolute;
-    z-index: 10;
+    z-index: 0;
+    opacity: 0.3;
   }
 
   .evening{
