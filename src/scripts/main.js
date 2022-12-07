@@ -30,15 +30,16 @@ let store = {
 class Day {
   constructor(options) {
     this.description = options.description,
-      this.temp = options.temp,
-      this.date = options.date
+    this.temp = options.temp,
+    this.date = options.date
     this.tempMax = options.tempMax,
-      this.tempMin = options.tempMin,
-      this.feelsLike = options.feelsLike,
-      this.humidity = options.humidity
+    this.tempMin = options.tempMin,
+    this.feelsLike = options.feelsLike,
+    this.humidity = options.humidity
+    this.icon = options.icon
   }
 
-  updateIndicators(description, temp, tempMax, tempMin, feelsLike, humidity, date) {
+  updateIndicators(description, temp, tempMax, tempMin, feelsLike, humidity, date, icon) {
     this.description.textContent = description
     this.temp.textContent = addDeg(convertToCel(temp))
     this.tempMax.textContent = addDeg(convertToCel(tempMax))
@@ -46,12 +47,14 @@ class Day {
     this.feelsLike.textContent = addDeg(convertToCel(feelsLike))
     this.humidity.textContent = addPer(humidity)
     this.date.textContent = dateTransform(date)
+    this.icon.src = `./images/${icon}.png`
   }
 
-  updateIndicatorsNext(description, temp, date) {
+  updateIndicatorsNext(description, temp, date, icon) {
     this.description.textContent = description
     this.temp.textContent = addDeg(convertToCel(temp))
     this.date.textContent = dateTransform(date)
+    this.icon.src = `./images/${icon}.png`
   }
 
 }
@@ -66,25 +69,27 @@ const currentDay = new Day({
   tempMin: document.getElementById('current-min'),
   feelsLike: document.getElementById('current-feelsLike'),
   humidity: document.getElementById('current-humidity'),
-  date: document.getElementById('current-date')
-
+  date: document.getElementById('current-date'),
+  icon: document.getElementById('current-icon')
 })
 
 console.log(currentDay)
 
 
-const tomorroDay = new Day({
+const tomorrowDay = new Day({
   description: document.getElementById('tomorrow-description'),
   temp: document.getElementById('tomorrow-temp'),
-  date: document.getElementById('tomorrow-date')
+  date: document.getElementById('tomorrow-date'),
+  icon: document.getElementById('tomorrow-icon')
 })
-console.log(tomorroDay)
+console.log(tomorrowDay)
 
 
 const tomorrowAfterDay = new Day({
   description: document.getElementById('tomorrowAfter-description'),
   temp: document.getElementById('tomorrowAfter-temp'),
-  date: document.getElementById('tomorrowAfter-date')
+  date: document.getElementById('tomorrowAfter-date'),
+  icon: document.getElementById('tomorrowAfter-icon')
 })
 
 console.log(tomorrowAfterDay)
@@ -191,6 +196,7 @@ const fetchCity = async (place) => {
             weather: {
               0: {
                 description,
+                icon
               }
             }
           },
@@ -202,6 +208,7 @@ const fetchCity = async (place) => {
             weather: {
               0: {
                 description: tomorrowDescription,
+                icon: tomorrowIcon
               }
             }
           },
@@ -213,15 +220,19 @@ const fetchCity = async (place) => {
             weather: {
               0: {
                 description: tomorrowAfterTempDescription,
+                icon: tomorrowAfterIcon
               }
             }
           }
         }
       } = data
       labelSet(name)
-      currentDay.updateIndicators(description, temp, tempMax, tempMin, feelsLike, humidity, date)
-      tomorroDay.updateIndicatorsNext(tomorrowDescription, tomorrowTemp, tomorrowDate)
-      tomorrowAfterDay.updateIndicatorsNext(tomorrowAfterTempDescription, tomorrowAfterTemp, tomorrowAfterDate)
+      currentDay.updateIndicators(description, temp, tempMax, tempMin, feelsLike, humidity, date, icon)
+      tomorrowDay.updateIndicatorsNext(tomorrowDescription, tomorrowTemp, tomorrowDate, tomorrowIcon)
+      tomorrowAfterDay.updateIndicatorsNext(tomorrowAfterTempDescription, tomorrowAfterTemp, tomorrowAfterDate, tomorrowAfterIcon)
+      console.log(currentDay)
+      console.log(tomorrowDay)
+      console.log(tomorrowAfterDay)
       dateTransform(date)
     })
 
@@ -300,20 +311,20 @@ function labelSet(value) {
 // }
 // updateDate(currentDay.date)
 function dateTransform(data) {
-  let date = data.slice(0,10)
+  let date = data.slice(0, 10)
   console.log(date)
   const current_year = date.slice(0, 4)
-  let current_month = date.slice(5,7)
+  let current_month = date.slice(5, 7)
   let current_day = date.slice(8, 10)
 
   if (!current_month.startsWith('0')) {
     current_month = monthSort(current_month)
-  }else{
+  } else {
     current_month = current_month.charAt(1)
     current_month = monthSort(current_month)
   }
 
-  if(current_day.startsWith('0')){
+  if (current_day.startsWith('0')) {
     current_day = current_day.charAt(1)
   }
 
@@ -327,7 +338,7 @@ function dateTransform(data) {
 
   date = `${current_month} ${current_day}, ${current_year}`
   return date
-   
+
 }
 
 function convertToCel(deg) {

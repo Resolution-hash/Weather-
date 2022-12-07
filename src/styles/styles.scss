@@ -12,7 +12,6 @@ body{
 
 .main{
   width: 100%;
-  height: 100%;
   position: relative;
   overflow: hidden;
 }
@@ -38,9 +37,20 @@ body{
   display: flex;
   position: relative;
   z-index: 10;
-  
-  width: 100%;
-  height: 100px;
+  height: fit-content;
+  row-gap: 30px;
+  padding: 20px 20px 20px 60px;
+  transform: translateY(-150%);
+  animation: topToBottom 1.5s forwards;
+
+  @media(max-width: 768px){
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    row-gap: 20px;
+    padding: 20px 30px;
+    height: fit-content;
+  }
 
   &::after{
     display: block;
@@ -59,26 +69,47 @@ body{
   &__city{
     display: flex;
     align-items: center;
-    width: 30%;
-    justify-content: center;
+    width: 180px;
+    @media(max-width: 768px){
+        width: fit-content;
+    }
     &__item{
-      font-size: 20px;
-      padding: 20px 0;
-      text-align: center;
+      font-size: 25px;
       width: 100%;
       border-right: 2px solid $color-first;
+
+      @media(max-width: 1024px){
+        width: 160px;
+      }
+
+      @media(max-width: 768px){
+        width: 150px;
+        border: none;
+        text-align: center;
+      }
+
+     
     }
   }
 
   &__form{
-    margin-left: 100px;
     display: flex;
-    width: 100%;
-    column-gap: 20px;
+    width: 45%;
     align-items: center;
     z-index: 10;
-
+    padding-left: 5%;
+    flex-grow: 2;
+    justify-content: space-between;
+    @media(max-width: 768px){
+      width: 100%;
+      flex-direction: column;
+      justify-self: center;
+      padding-left: 0;
+      row-gap: 20px;
+    }
   }
+
+  
 }
 
   .form-block{
@@ -86,6 +117,9 @@ body{
     display: flex;
     flex-direction: column;
     margin-bottom: 6px;
+    @media(max-width: 768px){
+      width: 100%;
+    }
     
     &__label{
       font-size: 12px;
@@ -103,21 +137,32 @@ body{
     }
   }
 
-  .form__button{
-    cursor: pointer;
-    padding: 10px 15px;
-    border: 1px solid $color-first;
-    border-radius: 5px;
-    height: fit-content;
-    background: none;
-    
-    &:hover{
-      background: $color-first;
-      color: white;
-      transition: all .1s linear;
-    }
+  //button
+.button-wrapper{
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.button{
+  cursor: pointer;
+  padding: 10px 15px;
+  border: 1px solid $color-first;
+  border-radius: 5px;
+  height: fit-content;
+  background: none;
+  white-space: nowrap;
+  
+  &:hover{
+    background: $color-first;
+    color: white;
+    transition: all .1s linear;
   }
 
+  @media(max-width: 640px){
+    margin-bottom: 20px;
+  }
+}
 
 
 /*weather-block*/
@@ -126,20 +171,55 @@ body{
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  column-gap: 20px;
+  column-gap: 10px;
   z-index: 10;
+
+  // media
+
+  @media(max-width: 1280px){
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
   &__current{
     padding: 20px 60px 40px;
     width: 60%;
     height: 100%;
     position: relative;
     z-index: 1;
+    transform: translateX(-150%);
+    animation: leftToRight .8s forwards;
+
+
+
+    @media(max-width: 1280px){
+      width: initial;
+      padding: 20px 30px 40px;
+    }
+
   }
 
   &__secondary{
     padding: 20px 30px;
     position: relative;
     z-index: 1;
+    max-height: 238px;
+    height: 100%;
+
+    &:first-of-type{
+      transform: translateX(-150%);
+      animation: rightToLeft 1.3s forwards;
+    }
+
+    &:last-of-type{
+      transform: translateX(-150%);
+      animation: rightToLeft 1.5s forwards;
+    }
+
+    @media(max-width: 1280px){
+      flex-grow: 1;
+    }
+
   }
   
   &__current:after,
@@ -161,6 +241,22 @@ body{
     row-gap: 10px;
     display: flex;
     flex-direction: column;
+
+    &:first-child(){
+      transform: translateX(-150%);
+      animation: rightToLeft 1s forwards;
+    }
+    
+    @media(max-width: 1280px){
+      flex-direction: row;
+      flex-grow: 1;
+      column-gap: 20px;
+    }
+
+    @media(max-width: 768px){
+      flex-direction: column;
+      row-gap: 20px;
+    }
   }
 }
 
@@ -175,24 +271,48 @@ body{
     border-bottom: 2px solid $color-first;
     padding-bottom: 5px;
     align-items: self-end;
+    @media(max-width: 640px){
+      flex-direction: column;
+      align-items: start;
+    }
+    
     &__title{
       font-size: 23px;
+      
     }
     &__title_small{
       font-size: 18px;
+      width: 150px;
+      @media(max-width: 640px){
+        font-size: 23px;
+      }
+
     }
 
     &__temp,
     &__date{
       font-size: 19px;
       margin-top: 10px;
+      @media(max-width: 640px){
+        font-size: 16px;
+      }
     }
+
 
     &__date_small{
       font-size: 15px;
     }
+
   }
 
+  &-icon > img{
+    width: 130px;
+    
+  }
+
+  &-icon_small > img{
+    width: 100px;
+  }
 
   &-main{
     display: flex;
@@ -200,6 +320,10 @@ body{
     text-align: center;
     align-items: center;
     padding-bottom: 50px;
+
+    @media(max-width: 640px){
+      padding-bottom: 35px;
+    }
 
     &-small{
       padding-bottom: 10px;
@@ -209,27 +333,31 @@ body{
       font-size: 70px;
       font-weight: 400;
       padding: 10px 0 30px;
+      @media(max-width: 640px){
+        font-size: 50px;
+        padding: 20px 0 0;
+      }
 
       &-small{
         font-size: 40px;
+        padding: 10px 0 10px;
       }
     }
 
-    &__img{
-      width: 150px;
-      &-small{
-        width: 100px;
-      }
-    }
+    
 
     &__description{
       font-size: 35px;
       font-weight: 400;
+      @media(max-width: 640px){
+        font-size: 25px;
+      }
 
       &-small{
         font-size: 20px;
       }
     }
+
   }
 
   &-footer{
@@ -257,16 +385,26 @@ body{
     &__title{
       color: $color-second;
       margin-bottom: 10px;
+
+      @media(max-width: 640px){
+        font-size: 13px;
+        
+      }
     }
+
+    
 
     &__value{
       font-size: 30px;
       font-weight: 400;
+      @media(max-width: 640px){
+        font-size: 25px;
+      }
     }
   }
-
-  
 }
+
+
 
 
 
@@ -279,17 +417,17 @@ body{
     position:absolute;
     z-index: 10;
     width: 100vw;
-    height:100vh;
-    animation: snow1 30s linear infinite;  
+    height: 100%;
+    animation: snow1 50s linear infinite;  
     z-index: 0;
   }
 
 
   .snowflake-2{
-    background-image: url(../images/snow2.png),url(../images/snow2.png);
-    animation: snow2 30s linear infinite;
+    background-image: url(../images/snow2.png);
+    animation: snow2 50s linear infinite;
     width: 100vw;
-    height:100vh;
+    height: 100%;
     position:absolute;
     z-index: 0;
     opacity: 0.3;
@@ -314,3 +452,19 @@ body{
   40% {background-position: 30% 100px;}
   to{background-position: 20% 700px;}
 }
+
+@keyframes topToBottom {
+  0% {transform: translateY(-150%);}
+  100% {transform: translateY(0);}
+}
+
+@keyframes leftToRight {
+  0% {transform: translateX(-150%);}
+  100% {transform: translateY(0);}
+}
+
+@keyframes rightToLeft {
+  0% {transform: translateX(150%);}
+  100% {transform: translateY(0);}
+}
+
