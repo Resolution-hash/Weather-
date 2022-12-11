@@ -10,22 +10,32 @@
 </head>
 
 <body>
-  <div class="main day" id="app">
-    <div class="snowflake-2 "></div>
-    <div class="snowflake-1 "></div>
+  <div class="main day" id="main">
+    <div class="preloader" id="page-preloader">
+      <div class="loader loader-1"></div>
+    </div>
+    <div class="animation snowflake-2 disable" id="snow-1"></div>
+    <div class="animation snowflake-1 disable" id="snow-2"></div>
+    <div class="animation rain disable" id="rain"></div>
+    <div class="animation cloud disable" id="cloud">
+      <img src="./images/cloud-1.png" alt="" class="cloud1">
+      <img src="./images/cloud-2.png" alt="" class="cloud2">
+      <img src="./images/cloud-3.png" alt="" class="cloud3">
+      <img src="./images/cloud-4.png" alt="" class="cloud4">
+    </div>
     <div class="container">
       <div class="container__search-block">
         <div class="search-block">
           <div class="search-block__city">
-            <h1 class="search-block__city__item" id="label-city">Москва</h1>
+            <h1 class="search-block__city__item" id="label-city">Город</h1>
           </div>
           <form class="search-block__form" name="checkWeather">
             <div class="form-block">
-              <label class="form-block__label">Введите город</label>
+              <label class="form-block__label" id="form-label">Введите город</label>
               <input type="search" class="form-block__input" autocomplete="off" id="form-input">
             </div>
             <div class="button-wrapper">
-              <button class="button">Проверить погоду</button>
+              <button class="button" id="button">Проверить погоду</button>
             </div>
           </form>
 
@@ -35,7 +45,7 @@
 
       <div class="weather-block">
         <div class="weather-block__current">
-          <div class="weather-header">
+          <div class="weather-header" >
             <span class="weather-header__title ">СЕГОДНЯ</span>
             <span class="weather-header__temp" id="current-date">Дата</span>
           </div>
@@ -49,21 +59,21 @@
           <div class="weather-footer">
             <div class="weather-footer__block">
               <div class="weather-footer__stat">
-                <span class="weather-footer__title">Максимальная</span>
+                <span class="weather-footer__title" id="weather-title">Максимальная</span>
                 <span class="weather-footer__value" id="current-max">-5°C</span>
               </div>
               <div class="weather-footer__stat">
-                <span class="weather-footer__title">Минимальная</span>
+                <span class="weather-footer__title" id="weather-title">Минимальная</span>
                 <span class="weather-footer__value" id="current-min">9°C</span>
               </div>
             </div>
             <div class="weather-footer__block">
               <div class="weather-footer__stat">
-                <span class="weather-footer__title">Ощущается как</span>
+                <span class="weather-footer__title" id="weather-title">Ощущается как</span>
                 <span class="weather-footer__value" id="current-feelsLike">-8°C</span>
               </div>
               <div class="weather-footer__stat">
-                <span class="weather-footer__title">Влажность</span>
+                <span class="weather-footer__title" id="weather-title">Влажность</span>
                 <span class="weather-footer__value" id="current-humidity">80%</span>
               </div>
             </div>
@@ -81,7 +91,8 @@
               <div class="weather-icon_small">
                 <img src="./images/01d.png" alt="" id="tomorrow-icon">
               </div>
-              <span class="weather-main__description weather-main__description-small" id="tomorrow-description">Ясно</span>
+              <span class="weather-main__description weather-main__description-small"
+                id="tomorrow-description">Ясно</span>
             </div>
           </div>
           <div class="weather-block__secondary">

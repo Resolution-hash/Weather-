@@ -5,10 +5,19 @@
 body{
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  color: $color-first;
   width: 100vw;
   height: 100vh;
+  
+  &.font-night{
+    color: $color-night;
+  }
+
+  &.font-day{
+    color: $color-first;
+  }
 }
+
+
 
 .main{
   width: 100%;
@@ -41,7 +50,7 @@ body{
   row-gap: 30px;
   padding: 20px 20px 20px 60px;
   transform: translateY(-150%);
-  animation: topToBottom 1.5s forwards;
+  animation: topToBottom 1.7s forwards;
 
   @media(max-width: 768px){
     flex-direction: column;
@@ -76,7 +85,6 @@ body{
     &__item{
       font-size: 25px;
       width: 100%;
-      border-right: 2px solid $color-first;
 
       @media(max-width: 1024px){
         width: 160px;
@@ -124,6 +132,7 @@ body{
     &__label{
       font-size: 12px;
       color: $color-first;
+
     }
   
     &__input{
@@ -133,6 +142,7 @@ body{
       display: flex;
       background: none;
       border: none;
+      color: $color-first;
       border-bottom: 1px solid $color-first;
     }
   }
@@ -188,7 +198,7 @@ body{
     position: relative;
     z-index: 1;
     transform: translateX(-150%);
-    animation: leftToRight .8s forwards;
+    animation: leftToRight 2.5s forwards;
 
 
 
@@ -208,12 +218,12 @@ body{
 
     &:first-of-type{
       transform: translateX(-150%);
-      animation: rightToLeft 1.3s forwards;
+      animation: rightToLeft 2.5s forwards;
     }
 
     &:last-of-type{
       transform: translateX(-150%);
-      animation: rightToLeft 1.5s forwards;
+      animation: rightToLeft 2.8s forwards;
     }
 
     @media(max-width: 1280px){
@@ -383,12 +393,9 @@ body{
     }
 
     &__title{
-      color: $color-second;
       margin-bottom: 10px;
-
       @media(max-width: 640px){
         font-size: 13px;
-        
       }
     }
 
@@ -404,6 +411,17 @@ body{
   }
 }
 
+.font-night-secondary{
+  color:$color-night-secondary !important;
+}
+
+.font-day-secondary{
+  color:$color-second;
+}
+
+.border-night{
+  border-color:$color-night-secondary !important;
+}
 
 
 
@@ -418,22 +436,63 @@ body{
     z-index: 10;
     width: 100vw;
     height: 100%;
-    animation: snow1 50s linear infinite;  
+    animation: snow1 1s linear infinite;  
     z-index: 0;
   }
 
 
   .snowflake-2{
     background-image: url(../images/snow2.png);
-    animation: snow2 50s linear infinite;
-    width: 100vw;
+    animation: snow2 1s linear infinite;
+    width: 100%;
     height: 100%;
     position:absolute;
     z-index: 0;
     opacity: 0.3;
   }
 
-  .evening{
+  .rain{
+    position: absolute;
+    background-image: url(../images/rain.png);
+    height: 100%;
+    width: 100%;
+    animation: rain .3s linear infinite;
+    z-index: 0;
+    opacity: 0.3;
+  }
+
+  .cloud {
+    overflow: hidden;
+    position: absolute;
+    width:100%;
+    height: 100%;
+}
+.cloud img {
+    width: fit-content;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    user-select: none;    
+    pointer-events: none;
+    object-fit: fill;
+    opacity: 0.2;
+}
+
+.cloud1 {
+    animation: cloud 20s infinite linear
+}
+.cloud2 {
+    animation: cloud 40s infinite linear
+}
+.cloud3 {
+    animation: cloud 60s infinite linear
+}
+.cloud4 {
+    animation: cloud 80s infinite linear
+}
+
+  .night{
     background: linear-gradient(180deg, #090717,#070561,#3614ad);
   }
 
@@ -443,14 +502,12 @@ body{
   
 
 @keyframes snow2{
-  0%{background-position: 0 0, 0 0;}
-  100%{background-position: 10% 600px, 10% 600px;}
+  0%{background-position: 0 0;}
+  100%{background-position: -10% 600px;}
 }
 @keyframes snow1{
-  from{background-position: 0 -300px;}
-  20% {background-position: 20% -100px;}
-  40% {background-position: 30% 100px;}
-  to{background-position: 20% 700px;}
+  from{background-position: 0 0;}
+  to{background-position: -20% 400%;}
 }
 
 @keyframes topToBottom {
@@ -467,4 +524,126 @@ body{
   0% {transform: translateX(150%);}
   100% {transform: translateY(0);}
 }
+
+@keyframes rain{
+  0%{
+    background-position: 0% 0%;
+  }
+  100%{
+    background-position: -10% 200%;
+  }
+}
+
+@keyframes cloud {
+  from {
+      transform: translateX(130%)
+  }
+  to {
+     transform: translateX(-100%)
+  }
+}
+
+
+// preloader
+
+
+.preloader{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  // background: linear-gradient(0deg, #3561e8,#4a7ef2,#558df6);
+  background: linear-gradient(90deg, #1b1c55,#2f2888);
+  z-index: 50;
+  opacity: 1;
+  visibility: visible;
+  transition: 1s all;
+
+  .loader{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 60;
+  
+  
+    &::before, &::after{
+      content: '';
+      position: absolute;
+    }
+  }
+
+  &.done{
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+
+
+
+	
+
+.loader-1{
+  &::before, &::after{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  // top: calc(50% - 15px);
+  // left: calc(50% - 15px);
+  top: 0;
+  left: 0;
+  transform: translate(-50%,-50%);
+  animation: 2s linear infinite;
+  }
+  &::before{
+    border-style: solid;
+    border-width: 3px 3px 3px 0;
+    border-color: #fff #0000 #0000;
+    transform: scale(0.3) rotate(0deg);
+    opacity: 0.5;
+    animation-name: foregroundCircle;
+  }
+    
+  &::after{
+    background: #fff;
+    opacity: 0.5;
+    transform: scale(0);
+    animation-name: backgroundCircle;
+  }
+} 
+
+  @keyframes foregroundCircle{
+    0%{
+		transform: scale(0.3) rotate(0deg);
+    }
+	12.5%{
+		transform: scale(0.3) rotate(180deg);
+    }
+	25%, 50%{
+		opacity: 1;
+    }
+	50%{
+		transform: scale(1) rotate(720deg);
+    }
+	100%{
+		transform: scale(0.3) rotate(1800deg);
+		opacity: 0.5;
+    }
+  }
+	
+
+@keyframes backgroundCircle{
+  12.5%{
+		transform: scale(0.3);
+  }
+	90%, 100%{
+		transform: scale(2);
+		opacity: 0;
+  }
+}
+	
 
