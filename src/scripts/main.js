@@ -8,7 +8,7 @@ const snowFlake_1 = document.getElementById('snow-1')
 const snowFlake_2 = document.getElementById('snow-2')
 const rain = document.getElementById('rain')
 const cloud = document.getElementById('cloud')
-const snowDescription = "снегопад"
+const snowDescription = "снег"
 const snowDescriptionSmall = "небольшой снег"
 const rainDescription = "дождь"
 const rainDescriptionSmall = "небольшой дождь"
@@ -118,13 +118,13 @@ class Day {
       return 'day'
     }
 
-    function setBorderColor(elem, className){
+    function setBorderColor(elem, className) {
       elem.forEach((el) => {
         el.classList.add(className)
       })
     }
 
-    function unsetBorderColor(elem, className){
+    function unsetBorderColor(elem, className) {
       elem.forEach((el) => {
         el.classList.remove(className)
       })
@@ -137,7 +137,7 @@ class Day {
       const classDay = 'font-day-secondary'
       const classNight = 'font-night-secondary'
 
-      
+
 
       for (let i = 0; i < weatherTitle.length; i++) {
         if (weatherTitle[i].classList.contains(classDay)) {
@@ -207,7 +207,6 @@ function geoFind() {
 
     status.textContent = ''
     fetchData(latitude, longitude)
-    console.log('+')
   }
 
   function error() {
@@ -229,7 +228,6 @@ const fetchData = async (lat, lon) => {
     .then(stat)
     .then(json)
     .then(data => {
-      console.log(data)
       let {
         city: {
           name
@@ -306,7 +304,6 @@ const fetchCity = async (place) => {
     .then(stat)
     .then(json)
     .then(data => {
-      console.log(data)
       let {
         city: {
           name
@@ -452,7 +449,6 @@ document.body.onload = function () {
   setTimeout(function () {
     {
       let preloader = document.getElementById('page-preloader')
-      console.log(preloader)
       if (!preloader.classList.contains('done')) {
         preloader.classList.add('done')
       }
