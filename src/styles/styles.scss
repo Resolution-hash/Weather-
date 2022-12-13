@@ -51,6 +51,7 @@ body{
   padding: 20px 20px 20px 60px;
   transform: translateY(-150%);
   animation: topToBottom 1.7s forwards;
+  border-radius: 15px;
 
   @media(max-width: 768px){
     flex-direction: column;
@@ -69,16 +70,18 @@ body{
     position: absolute;
     width: 100%;
     height: 100%;
-    background: white;
-    opacity: 0.1;
+    background: #ffffff1f;
+    backdrop-filter: blur(5px);
     border-radius: 15px;
-    z-index: 0;
+    z-index: 1;
   }
 
   &__city{
     display: flex;
     align-items: center;
     width: 180px;
+    position: relative;
+    z-index: 10;
     @media(max-width: 768px){
         width: fit-content;
     }
@@ -241,10 +244,10 @@ body{
     position: absolute;
     width: 100%;
     height: 100%;
-    background: white;
-    opacity: 0.1;
+    background: #ffffff1f;
+    backdrop-filter: blur(5px);
     border-radius: 15px;
-    z-index: 0;
+    z-index: 1;
   }
   &__next{
     flex-grow: 2;
@@ -276,11 +279,13 @@ body{
     column-gap: 50px;
   }
   &-header{
+    position: relative;
     display: flex;
     justify-content: space-between;
     border-bottom: 2px solid $color-first;
     padding-bottom: 5px;
     align-items: self-end;
+    z-index: 10;
     @media(max-width: 640px){
       flex-direction: column;
       align-items: start;
@@ -330,6 +335,8 @@ body{
     text-align: center;
     align-items: center;
     padding-bottom: 50px;
+    position: relative;
+    z-index: 10;
 
     @media(max-width: 640px){
       padding-bottom: 35px;
@@ -372,6 +379,8 @@ body{
 
   &-footer{
     display: flex;
+    position: relative;
+    z-index: 10;
 
     &__block:first-child{
       border-right: 2px solid $color-first;
@@ -466,6 +475,7 @@ body{
     position: absolute;
     width:100%;
     height: 100%;
+    z-index: 0;
 }
 .cloud img {
     width: fit-content;

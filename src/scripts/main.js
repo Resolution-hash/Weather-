@@ -15,6 +15,7 @@ const rainDescriptionSmall = "небольшой дождь"
 const cloudDescription = "пасмурно"
 const cloudDescriptionSmall = "облачно с прояснениями"
 const cloudDescriptionSmall1 = "переменная облачность"
+const cloudDescriptionSmall2 = "небольшая облачность"
 
 
 
@@ -91,6 +92,9 @@ class Day {
       case cloudDescriptionSmall:
         cloud.classList.remove('disable')
       case cloudDescriptionSmall1:
+        cloud.classList.remove('disable')
+        break
+      case cloudDescriptionSmall2:
         cloud.classList.remove('disable')
         break
 
